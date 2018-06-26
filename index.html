@@ -45,10 +45,16 @@
     <section class="row log">
         <div class="small-12 columns">
             <ul>
-                <li>
-
+                <li v-for="damage in blow">
+                    <p class="player-damage">The Monster hit you for {{damage.player}} points</p>
+                    <p class="monster-damage">You hit the monster for {{damage.monster}} points</p>
                 </li>
             </ul>
+            <!--<ul>
+                <li class="player-damage" v-for="damage in blowToMonster">
+                    You hit the monster for {{damage}} points
+                </li>
+            </ul>-->
         </div>
     </section>
 </div>

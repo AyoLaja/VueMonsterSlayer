@@ -7,7 +7,8 @@ new Vue({
         monsterHealth: 100, 
         lives: 3, 
         playerBarColor: 'green',
-        monsterBarColor: 'green'
+        monsterBarColor: 'green',
+        blow: []
     }, 
     methods: {
         show() {
@@ -22,6 +23,10 @@ new Vue({
             this.lives = 3;
             this.playerBarColor = 'green';
             this.monsterBarColor = 'green';
+            this.blow = [];
+
+            // let healButton = document.getElementById('heal');
+            // healButton.removeAttribute('disabled');
         },
         randomAttack() {
             let damage = Math.floor(Math.random() * (5 - 1) + 1) + 1;
@@ -33,10 +38,18 @@ new Vue({
         },
         attack() {
             this.playerHealth -= 3;
+            this.blow.unshift({
+                player: 3,
+                monster: this.randomAttack()
+            });
             this.monsterHealth -= this.randomAttack();
         },
         specialAttack() {
             this.playerHealth -= 11;
+            this.blow.unshift({
+                player: 11,
+                monster: this.randomSpecialAttack()
+            });
             this.monsterHealth -= this.randomSpecialAttack();
         }, 
         heal() {
@@ -64,6 +77,21 @@ new Vue({
             this.reset();
             alert('You lose!');
         }
+        // changeBarColor(bar, health) {
+        //     if (health <= 50) {
+        //         let warning = 'orange';
+        //         bar = warning;
+        //         if (health <= 20) {
+        //             let danger = 'red';
+        //             bar = danger;
+        //             if (health <= 0) {
+        //                 health = 0;
+        //                 alert('You have lost');
+        //                 this.reset();
+        //             }
+        //         }
+        //     }
+        // }
     }, 
     computed: {
         playerBar() {
@@ -81,6 +109,7 @@ new Vue({
     },
     watch: {
         playerHealth: function() {
+            // this.changeBarColor(this.playerBarColor, this.playerHealth)
             if (this.playerHealth <= 50) {
                 let warning = 'orange';
                 this.playerBarColor = warning;
@@ -114,6 +143,9 @@ new Vue({
             let healButton = document.getElementById('heal');
             if(this.lives == 0) {
                 healButton.setAttribute('disabled', true);
+            }
+            else {
+                healButton.removeAttribute('disabled');
             }
         }
     }

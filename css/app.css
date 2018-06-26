@@ -123,3 +123,15 @@ button {
     background-color: #c7c7c7;
     color: #fff;
 }
+
+.monster-damage {
+    background-color: #003f64;
+    color: #fff;
+    padding: 52x;
+}
+
+.player-damage {
+    background-color: #b00931;
+    color: #fff;
+    padding: 2px;
+}
