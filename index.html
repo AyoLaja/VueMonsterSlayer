@@ -42,7 +42,7 @@
     <div class="row text-center" v-show="showControls">
         {{lives}} lives left
     </div>
-    <section class="row log">
+    <section class="row log" v-if="blow.length > 0">
         <div class="small-12 columns">
             <ul>
                 <li v-for="damage in blow">
